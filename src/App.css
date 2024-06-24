@@ -1,51 +1,27 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.read-the-docs {
-  color: #888;
+main {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-group {
+  --padding: 2.5rem;
+  --radius: 4.5rem;
+
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: space-evenly;
+  background: rgba(255, 255, 255, 0.4);
+  padding: var(--padding);
+  border-radius: var(--radius);
+  width: max-content;
 }
 
 .card {
   border: 2px solid #eeeeee44;
-  border-radius: 1rem;
+  border-radius: calc(var(--radius) - var(--padding));
+  height: 50px;
   width: 50px;
   aspect-ratio: 1 / 1;
   padding: 2rem;
@@ -61,38 +37,24 @@
   transform: perspective(1000px);
 
   div {
+    --scale-max: 1.5;
+    --margin-max: 2rem;
+
     transition: 0.5s;
-    filter: brightness(0);
 
     &:hover {
-      filter: brightness(1);
-      transform: translateZ(100px);
+      transform: scale(var(--scale-max)) translateY(-20px);
+      margin: 0 var(--margin-max);
     }
 
-    &:hover + * {
-      filter: brightness(0.6);
-      transform: translateY(40deg);
-    }
-    &:hover + * + * {
-      filter: brightness(0.6);
-      transform: translateY(20deg);
-    }
-    &:hover + * + * + * {
-      filter: brightness(0.6);
-      transform: translateY(10deg);
-    }
-
+    &:hover + *,
     &:has(+ *:hover) {
-      filter: brightness(0.6);
-      transform: translateY(40deg);
+      transform: scale(calc(var(--scale-max) - 0.2));
+      margin: 0 calc(var(--margin-max) - 1rem);
     }
+    &:hover + * + *,
     &:has(+ * + *:hover) {
-      filter: brightness(0.6);
-      transform: translateY(20deg);
-    }
-    &:has(+ * + * + *:hover) {
-      filter: brightness(0.6);
-      transform: translateY(10deg);
+      transform: scale(calc(var(--scale-max) - 0.3));
     }
   }
 }
